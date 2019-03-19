@@ -14,7 +14,7 @@ public class Delite_Componeny : MonoBehaviour {
 	void Update () {
 		if(transform.position.x > 5.15 && transform.position.x < 6.15 && transform.position.z > -0.2 && transform.position.z < 2.8)
         {
-            GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game = me;
+            GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game.Add(me);
         }
 	}
 }

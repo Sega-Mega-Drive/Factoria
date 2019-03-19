@@ -24,16 +24,55 @@ public class put : MonoBehaviour {
                 for (int i = 0; i < 2; i++)
                 {
                         x[i] = x[i] * 10;
-                        if (x[i] - (Convert.ToInt32(x[i])) != 0 && Math.Abs(x[i] - (x[i] + 1)) < Math.Abs(x[i] - (x[i] - 1)))
+                        if (x[i] - (Convert.ToInt32(x[i])) != 0)
                         {
-                            x[i]++;
+                              if (Math.Abs(x[i] - (x[i] + 1)) < Math.Abs(x[i] - (x[i] - 1)))
+                              {
+                                x[i]++;
+                              }
+                              else
+                              {
+                               x[i]--;
+                              }
+                        }
+                      x[i] = x[i] / 10;
+                
+                }
+            float y = transform.rotation.y%360;
+            if (y % 90 != 0)
+            {
+                if (y > 315)
+                {
+                    y = 0;
+                }
+                else
+                {
+                    if(y>225)
+                    {
+                        y = 270;
+                    }
+                    else
+                    {
+                        if(y>135)
+                        {
+                            y = 180;
                         }
                         else
                         {
-                            x[i]--;
+                            if(y > 45)
+                            {
+                                y = 90;
+                            }
+                            else
+                            {
+                                y = 0;
+                            }
                         }
-                        x[i] = x[i] / 10;
+                    }
                 }
+
+            }
+                rot = new Quaternion(0, y, 0, 1);
         }
         transform.rotation = rot;
         transform.position = new Vector3(x[0], 0.5f, x[1]);

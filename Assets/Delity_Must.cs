@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Delity_Must : MonoBehaviour {
 
-    public GameObject game;
+    public List<GameObject> game;
 	// Use this for initialization
 	void Start () {
 		
@@ -12,9 +12,10 @@ public class Delity_Must : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (game != null)
-        {
-            Destroy(game);
-        }
+            while (game.Count != 0)
+            {
+                Destroy(game[0]);
+            game.RemoveAt(0);
+            }
 	}
 }
