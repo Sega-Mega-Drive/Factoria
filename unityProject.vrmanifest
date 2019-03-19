@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.vr_factoria.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Ученик\\Documents\\VR_Factoria\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "VR_Factoria [Testing]"
+        }
+      }
+    }
+  ]
+}
