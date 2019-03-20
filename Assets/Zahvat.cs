@@ -29,11 +29,11 @@ public class Zahvat : MonoBehaviour
 
             // Attach this object to the hand
             hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
-            GetComponent<put>().enabled = false;
+                GetComponent<put>().enabled = false;
         }
         else if (isGrabEnding)
         {
-            GetComponent<put>().enabled = true;
+                GetComponent<put>().enabled = true;
             // Detach this object from the hand
             hand.DetachObject(gameObject);
 
