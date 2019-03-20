@@ -15,11 +15,13 @@ public class Genirator : MonoBehaviour
     public GameObject p2;
     public GameObject p3;
     public GameObject p4;
+    public GameObject k;
     public int sim;
     public int count;
     // Start is called before the first frame update
     void Start()
     {
+        count = 1;
         Generator();
     }
 
@@ -108,6 +110,11 @@ public class Genirator : MonoBehaviour
         sim = Convert.ToInt32(reader.ReadLine());
         reader.Close();
         file.Close();
+        GameObject g = Instantiate(k);
+        g.transform.position = new Vector3(3.5f, 1.5f, 4.5f);
+        g.AddComponent<F>();
+        g.GetComponent<F>().time();
+
     }
 
     void Load(float x, float z, int name, int[] dat, float rot)
