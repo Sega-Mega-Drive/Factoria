@@ -23,6 +23,7 @@ public class Genirator : MonoBehaviour
     public GameObject k;
     public int sim;
     public int count;
+    public bool scr;
     // Start is called before the first frame update
     void Start()
     {

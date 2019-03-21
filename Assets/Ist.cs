@@ -26,6 +26,7 @@ public class Ist : MonoBehaviour {
         {
             Message();
             yield return new WaitForSeconds(2f);
+            if (GameObject.Find("Cube").GetComponent<Genirator>().scr == false) break;
         }
     }
 
@@ -37,7 +38,7 @@ public class Ist : MonoBehaviour {
             if (transform.position.x - 1 == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
             {
                 n = Instantiate(p);
-                n.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+                n.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
                 n.AddComponent<F>();
                 n.GetComponent<F>().me = n;
                 GameObject.Find("Cube").GetComponent<Genirator>().product.Add(n);
@@ -50,7 +51,7 @@ public class Ist : MonoBehaviour {
                 if (transform.position.x + 1 == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
                 {
                     n = Instantiate(p);
-                    n.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+                    n.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
                     n.AddComponent<F>();
                     n.GetComponent<F>().me = n;
                     GameObject.Find("Cube").GetComponent<Genirator>().product.Add(n);
@@ -62,7 +63,7 @@ public class Ist : MonoBehaviour {
                     if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z - 1 == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
                     {
                         n = Instantiate(p);
-                        n.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+                        n.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
                         n.AddComponent<F>();
                         n.GetComponent<F>().me = n;
                         GameObject.Find("Cube").GetComponent<Genirator>().product.Add(n);
@@ -74,7 +75,7 @@ public class Ist : MonoBehaviour {
                         if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z + 1 == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
                         {
                             n = Instantiate(p);
-                            n.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+                            n.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
                             n.AddComponent<F>();
                             n.GetComponent<F>().me = n;
                             GameObject.Find("Cube").GetComponent<Genirator>().product.Add(n);

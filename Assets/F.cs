@@ -21,14 +21,16 @@ public class F : MonoBehaviour
     }
     public void time()
     {
+        if (GameObject.Find("Cube").GetComponent<Genirator>().scr)
+        {
             for (int i = 0; i < GameObject.Find("Cube").GetComponent<Genirator>().elements.Count; i++)
             {
 
-            x = (float)(((float)((int) (transform.position.x * 10)))/10);
-            z = (float)(((float)((int)(transform.position.z * 10))) / 10);
-            transform.position = new Vector3(Convert.ToSingle(x), transform.position.y, Convert.ToSingle(z));
-            x = 0; z = 0;
-            if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
+                x = (float)(((float)((int)(transform.position.x * 10))) / 10);
+                z = (float)(((float)((int)(transform.position.z * 10))) / 10);
+                transform.position = new Vector3(Convert.ToSingle(x), transform.position.y, Convert.ToSingle(z));
+                x = 0; z = 0;
+                if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
                 {
                     float y = GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.eulerAngles.y;
                     switch ((int)y)
@@ -55,17 +57,18 @@ public class F : MonoBehaviour
                             }
                     }
                     tr = true;
-                break;
+                    break;
                 }
             }
-        if (tr == false)
-        {
-            GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game.Add(me);
-            //break;
-        }
-        else
-            tr = false;
+            if (tr == false)
+            {
+                GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game.Add(me);
+                //break;
+            }
+            else
+                tr = false;
             StartCoroutine("DoMessage");
+        }
   
     }
 
