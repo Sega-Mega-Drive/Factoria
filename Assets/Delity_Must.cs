@@ -14,7 +14,15 @@ public class Delity_Must : MonoBehaviour {
 	void Update () {
             while (game.Count != 0)
             {
-                Destroy(game[0]);
+            for (int i = 0; i < GameObject.Find("Cube").GetComponent<Genirator>().product.Count; i++)
+            {
+                if (GameObject.Find("Cube").GetComponent<Genirator>().product[i] == game[0])
+                {
+                    GameObject.Find("Cube").GetComponent<Genirator>().product_index.RemoveAt(i);
+                    GameObject.Find("Cube").GetComponent<Genirator>().product.RemoveAt(i);
+                }
+            }
+            Destroy(game[0]);
             game.RemoveAt(0);
             }
 	}

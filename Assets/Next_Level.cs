@@ -33,10 +33,21 @@ public class Next_Level : MonoBehaviour
         else if (isGrabEnding)
         {
             List<GameObject> list = GameObject.Find("Cube").GetComponent<Genirator>().elements;
+            List<int[]> list1 = GameObject.Find("Cube").GetComponent<Genirator>().elements_dat;
+            List<int> list2 = GameObject.Find("Cube").GetComponent<Genirator>().elements_index;
+            List<GameObject> list3 = GameObject.Find("Cube").GetComponent<Genirator>().product;
+            List<int> list4 = GameObject.Find("Cube").GetComponent<Genirator>().product_index;
             while (list.Count != 0)
             {
                 Destroy(list[0]);
                 list.RemoveAt(0);
+                list1.RemoveAt(0);
+                list2.RemoveAt(0);
+            }
+            while (list3.Count != 0)
+            {
+                list3.RemoveAt(0);
+                list4.RemoveAt(0);
             }
             transform.position = new Vector3(-1, 1, 5);
             transform.rotation = new Quaternion(0, 0, 0, 1);

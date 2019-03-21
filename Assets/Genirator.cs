@@ -10,6 +10,8 @@ public class Genirator : MonoBehaviour
     public List<GameObject> elements = new List<GameObject>();
     public List<int> elements_index = new List<int>();
     public List<int[]> elements_dat = new List<int[]>();
+    public List<GameObject> product = new List<GameObject>();
+    public List<int> product_index = new List<int>();
     public int[] product_summ = new int[14];
     public GameObject p1_1;
     public GameObject p1_2;
@@ -18,6 +20,7 @@ public class Genirator : MonoBehaviour
     public GameObject p2;
     public GameObject p3;
     public GameObject p4;
+    public GameObject k;
     public int sim;
     public int count;
     // Start is called before the first frame update
@@ -109,10 +112,10 @@ public class Genirator : MonoBehaviour
                 }
             }
         }
+
         sim = Convert.ToInt32(reader.ReadLine());
         reader.Close();
         file.Close();
-
     }
 
     void Load(float x, float z, int name, int[] dat, float rot)
@@ -147,6 +150,9 @@ public class Genirator : MonoBehaviour
                     }
                     elements.Add(Instantiate(buf));
                     elements_index.Add(1);
+                    elements[elements.Count - 1].AddComponent<Ist>();
+                    elements[elements.Count - 1].GetComponent<Ist>().p = k;
+                    elements[elements.Count - 1].GetComponent<Ist>().me = elements[elements.Count - 1];
                     break;
                 }
             case 2:
@@ -165,6 +171,7 @@ public class Genirator : MonoBehaviour
                 {
                     elements.Add(Instantiate(p4));
                     elements_index.Add(4);
+                    elements[elements.Count - 1].AddComponent<Sk>();
                     break;
                 }
 

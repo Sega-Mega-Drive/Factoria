@@ -5,7 +5,7 @@ using System;
 
 public class F : MonoBehaviour
 {
-    float x = 0, z = 0;
+    public float x = 0, z = 0;
     bool tr;
     public GameObject me;
 
@@ -35,22 +35,22 @@ public class F : MonoBehaviour
                     {
                         case 90:
                             {
-                                z = 1f;
+                                z = -1f;
                                 break;
                             }
                         case 180:
                             {
-                                x = 1f;
+                                x = -1f;
                                 break;
                             }
                         case 270:
                             {
-                                z = -1f;
+                                z = 1f;
                                 break;
                             }
                         case 0:
                             {
-                                x = -1f;
+                                x = 1f;
                                 break;
                             }
                     }
@@ -71,11 +71,11 @@ public class F : MonoBehaviour
 
     void Message()
     {
-        transform.position = new Vector3(transform.position.x+Convert.ToSingle(x), transform.position.y, transform.position.z+Convert.ToSingle(z));
+        transform.position = new Vector3(transform.position.x+x, transform.position.y, transform.position.z+z);
         Debug.Log(transform.position);
     }
 
-    IEnumerator DoMessage()
+    public IEnumerator DoMessage()
     {
         bool tram = false;
         for (int b = 0; b < 2; b++)
