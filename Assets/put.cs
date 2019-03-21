@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class put : MonoBehaviour {
     Vector3 vec;
-    Quaternion rot;
+    float rot;
     int count;
 	// Use this for initialization
 	void Start () {
         vec = transform.position;
-        rot = transform.rotation;
+        rot = transform.eulerAngles.y;
 	}
 	
 	// Update is called once per frame
@@ -23,22 +23,27 @@ public class put : MonoBehaviour {
         {
                 for (int i = 0; i < 2; i++)
                 {
-                        x[i] = x[i] * 10;
+                    int tmp = (int)(x[i] * 100);
+                    if (tmp % 10 < 5)
+                    {
+                        tmp /= 10;
+                    } else
+                    {
+                        tmp = tmp / 10 + 1;
+                    }
+                    x[i] = (float)tmp / 10;
+                        /*x[i] = x[i] * 10;
                         if (x[i] - (Convert.ToInt32(x[i])) != 0)
                         {
                               if (Math.Abs(x[i] - (x[i] + 1)) < Math.Abs(x[i] - (x[i] - 1)))
                               {
                                 x[i]++;
                               }
-                              else
-                              {
-                               x[i]--;
-                              }
                         }
-                      x[i] = x[i] / 10;
+                      x[i] = x[i] / 10; */
                 
                 }
-            float y = transform.rotation.y%360;
+            float y = Math.Abs(transform.eulerAngles.y%360);
             if (y % 90 != 0)
             {
                 if (y > 315)
@@ -72,9 +77,9 @@ public class put : MonoBehaviour {
                 }
 
             }
-                rot = new Quaternion(0, y, 0, 1);
+                rot = y;
         }
-        transform.rotation = rot;
+        transform.eulerAngles = new Vector3(0, rot, 0);
         transform.position = new Vector3(x[0], 0.5f, x[1]);
         vec = transform.position;
     }

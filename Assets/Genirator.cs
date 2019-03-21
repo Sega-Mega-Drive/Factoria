@@ -8,6 +8,9 @@ using Valve.VR.InteractionSystem;
 public class Genirator : MonoBehaviour
 {
     public List<GameObject> elements = new List<GameObject>();
+    public List<int> elements_index = new List<int>();
+    public List<int[]> elements_dat = new List<int[]>();
+    public int[] product_summ = new int[14];
     public GameObject p1_1;
     public GameObject p1_2;
     public GameObject p1_3;
@@ -15,7 +18,6 @@ public class Genirator : MonoBehaviour
     public GameObject p2;
     public GameObject p3;
     public GameObject p4;
-    public GameObject k;
     public int sim;
     public int count;
     // Start is called before the first frame update
@@ -62,10 +64,10 @@ public class Genirator : MonoBehaviour
                             arr[2] = Convert.ToInt32(dat[4]);
                             Debug.Log(Convert.ToInt32(Convert.ToSingle(dat[5])));
                             int rot = Convert.ToInt32(Convert.ToSingle(dat[5]));
-                            if (rot == 1) rot = 0;
+                            if (rot == 1) rot = 180;
                             else
                             {
-                                if (rot == -1) rot = 180;
+                                if (rot == -1) rot = 0;
                                 else
                                 {
                                     rot = Convert.ToInt32(Convert.ToSingle(dat[6]));
@@ -82,10 +84,10 @@ public class Genirator : MonoBehaviour
                     case 2:
                         {
                             int rot = Convert.ToInt32(Convert.ToSingle(dat[2]));
-                            if (rot == 1) rot = 0;
+                            if (rot == 1) rot = 180;
                             else
                             {
-                                if (rot == -1) rot = 180;
+                                if (rot == -1) rot = 0;
                                 else
                                 {
                                     rot = Convert.ToInt32(Convert.ToSingle(dat[3]));
@@ -110,10 +112,6 @@ public class Genirator : MonoBehaviour
         sim = Convert.ToInt32(reader.ReadLine());
         reader.Close();
         file.Close();
-        GameObject g = Instantiate(k);
-        g.transform.position = new Vector3(3.5f, 1.5f, 4.5f);
-        g.AddComponent<F>();
-        g.GetComponent<F>().time();
 
     }
 
@@ -126,49 +124,64 @@ public class Genirator : MonoBehaviour
                     GameObject buf = p1_1;
                     switch(dat[0])
                     {
-                        case 1:
+                        case 0:
                             {
                                 buf = p1_1;
                                 break;
                             }
-                        case 2:
+                        case 1:
                             {
                                 buf = p1_2;
                                 break;
                             }
-                        case 3:
+                        case 2:
                             {
                                 buf = p1_3;
                                 break;
                             }
-                        case 4:
+                        case 3:
                             {
                                 buf = p1_4;
                                 break;
                             }
                     }
                     elements.Add(Instantiate(buf));
+                    elements_index.Add(1);
                     break;
                 }
             case 2:
                 {
                     elements.Add(Instantiate(p2));
+                    elements_index.Add(2);
                     break;
                 }
             case 3:
                 {
                     elements.Add(Instantiate(p3));
+                    elements_index.Add(3);
                     break;
                 }
             case 4:
                 {
                     elements.Add(Instantiate(p4));
+                    elements_index.Add(4);
                     break;
                 }
-               
+
         }
+        elements_dat.Add(dat);
         elements[elements.Count - 1].transform.position = new Vector3(x, 0.5f, z);
-        elements[elements.Count - 1].transform.rotation = new Quaternion(0, rot, 0, 1);
+        elements[elements.Count - 1].transform.eulerAngles = new Vector3(0, rot, 0);
+        elements[elements.Count - 1].AddComponent<BoxCollider>();
+        elements[elements.Count - 1].GetComponent<BoxCollider>().center = new Vector3(0, 0, 0);
+        if (elements_index[elements_index.Count - 1] != 2)
+        {
+            elements[elements.Count - 1].GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            elements[elements.Count - 1].GetComponent<BoxCollider>().size = new Vector3(5, 5, 5);
+        }
         elements[elements.Count - 1].AddComponent<put>();
         elements[elements.Count - 1].AddComponent<Zahvat>();
         elements[elements.Count - 1].AddComponent<Interactable>();

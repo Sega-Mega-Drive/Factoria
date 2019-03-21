@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class F : MonoBehaviour
 {
@@ -20,61 +21,79 @@ public class F : MonoBehaviour
     }
     public void time()
     {
-        x = 0; z = 0;
             for (int i = 0; i < GameObject.Find("Cube").GetComponent<Genirator>().elements.Count; i++)
             {
-                Debug.Log(GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position);
-                if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
+
+            x = (float)(((float)((int) (transform.position.x * 10)))/10);
+            z = (float)(((float)((int)(transform.position.z * 10))) / 10);
+            transform.position = new Vector3(Convert.ToSingle(x), transform.position.y, Convert.ToSingle(z));
+            x = 0; z = 0;
+            if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
                 {
-                    float y = GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.rotation.y;
+                    float y = GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.eulerAngles.y;
                     switch ((int)y)
                     {
                         case 90:
                             {
-                                z = 0.01f;
+                                z = 1f;
                                 break;
                             }
                         case 180:
                             {
-                                x = 0.01f;
+                                x = 1f;
                                 break;
                             }
                         case 270:
                             {
-                                z = -0.01f;
+                                z = -1f;
                                 break;
                             }
                         case 0:
                             {
-                                x = -0.01f;
+                                x = -1f;
                                 break;
                             }
                     }
                     tr = true;
-
+                break;
                 }
             }
-            if (tr == false)
-            {
-                GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game.Add(me);
-                //break;
-            }
-            else
+        if (tr == false)
+        {
+            GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game.Add(me);
+            //break;
+        }
+        else
+            tr = false;
             StartCoroutine("DoMessage");
   
     }
 
     void Message()
     {
-        transform.position = new Vector3(transform.position.x+x, transform.position.y, transform.position.z+z);
+        transform.position = new Vector3(transform.position.x+Convert.ToSingle(x), transform.position.y, transform.position.z+Convert.ToSingle(z));
+        Debug.Log(transform.position);
     }
 
     IEnumerator DoMessage()
     {
-        for (int b = 0; b < 100; b++)
+        bool tram = false;
+        for (int b = 0; b < 2; b++)
         {
-            Message();
-            yield return new WaitForSeconds(0.01f);
+            if (tram == true) break;
+                Message();
+            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < GameObject.Find("Cube").GetComponent<Genirator>().elements.Count; i++)
+            {
+                float lol = (float)(((float)((int)(transform.position.x * 10))) / 10);
+                float lol2 = (float)(((float)((int)(transform.position.z * 10))) / 10);
+                transform.position = new Vector3(Convert.ToSingle(lol), transform.position.y, Convert.ToSingle(lol2));
+                if (transform.position.x == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.x && transform.position.z == GameObject.Find("Cube").GetComponent<Genirator>().elements[i].transform.position.z)
+                {
+                    Debug.Log("true");
+                    tram = true;
+                }
+            }
         }
         time();
     }
