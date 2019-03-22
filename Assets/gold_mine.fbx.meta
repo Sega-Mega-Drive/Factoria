@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d70da778e7b3344fba62c85e5ed5b31
+guid: 6a6fe513078169244b1fe8a38535c9bb
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -11,8 +11,8 @@ ModelImporter:
     400004: //RootNode
     2100000: gold
     2100002: "\u043A\u0430\u043C\u0435\u043D\u044C"
-    2100004: "\u043A\u0440\u044B\u0448\u0430"
-    2100006: "\u0434\u0435\u0440\u0435\u0432\u043E"
+    2100004: "\u0434\u0435\u0440\u0435\u0432\u043E"
+    2100006: "\u043A\u0440\u044B\u0448\u0430"
     2100008: "\u0436\u0435\u043B\u0435\u0437\u043E"
     2100010: Material.008
     2300000: Cube
@@ -21,17 +21,7 @@ ModelImporter:
     3300002: Cube.012
     4300000: Cube.012
     4300002: Cube
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gold
-    second: {fileID: 2100000, guid: 1bff445591689e14691d4c08f3e71a31, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "\u0436\u0435\u043B\u0435\u0437\u043E"
-    second: {fileID: 2100000, guid: 9bcac2fb8b47ef94c8378bea9d31260f, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
