@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using Valve.VR.InteractionSystem;
 
 public class Sim : MonoBehaviour
@@ -33,6 +34,8 @@ public class Sim : MonoBehaviour
         else if (isGrabEnding)
         {
             GameObject.Find("Cube").GetComponent<Genirator>().scr = !(GameObject.Find("Cube").GetComponent<Genirator>().scr);
+            GameObject.Find("New Text (1)").GetComponent<TextMesh>().text = Convert.ToString(GameObject.Find("Cube").GetComponent<Genirator>().scr);
+            transform.position = new Vector3(3.5f, 0, -5.2f);
             // Detach this object from the hand
             hand.DetachObject(gameObject);
 

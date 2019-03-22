@@ -20,13 +20,17 @@ public class Genirator : MonoBehaviour
     public GameObject p2;
     public GameObject p3;
     public GameObject p4;
-    public GameObject k;
+    public GameObject k_1;
+    public GameObject k_2;
+    public GameObject k_3;
+    public GameObject k_4;
     public int sim;
     public int count;
     public bool scr;
     // Start is called before the first frame update
     void Start()
     {
+        scr = true;
         count = 1;
         Generator();
     }
@@ -39,6 +43,8 @@ public class Genirator : MonoBehaviour
 
     public void Generator()
     {
+        scr = true;
+        GameObject.Find("New Text (1)").GetComponent<TextMesh>().text = "True";
         string s;
         if (count < 10) s = "0" + count;
         else s = "" + count;
@@ -117,7 +123,19 @@ public class Genirator : MonoBehaviour
         sim = Convert.ToInt32(reader.ReadLine());
         reader.Close();
         file.Close();
+        StartCoroutine("DoMessage");
     }
+
+    IEnumerator DoMessage()
+    {
+        if (sim != -1)
+        {
+            yield return new WaitForSeconds(sim);
+            scr = false;
+            GameObject.Find("New Text (1)").GetComponent<TextMesh>().text = "False";
+        }
+    }
+
 
     void Load(float x, float z, int name, int[] dat, float rot)
     {
@@ -125,8 +143,10 @@ public class Genirator : MonoBehaviour
         {
             case 1:
                 {
+                    int index = 0;
                     GameObject buf = p1_1;
-                    switch(dat[0])
+                    index = dat[0];
+                    switch (dat[0])
                     {
                         case 0:
                             {
@@ -152,7 +172,7 @@ public class Genirator : MonoBehaviour
                     elements.Add(Instantiate(buf));
                     elements_index.Add(1);
                     elements[elements.Count - 1].AddComponent<Ist>();
-                    elements[elements.Count - 1].GetComponent<Ist>().p = k;
+                    elements[elements.Count - 1].GetComponent<Ist>().index = index;
                     elements[elements.Count - 1].GetComponent<Ist>().me = elements[elements.Count - 1];
                     break;
                 }

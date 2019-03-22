@@ -21,8 +21,7 @@ public class F : MonoBehaviour
     }
     public void time()
     {
-        if (GameObject.Find("Cube").GetComponent<Genirator>().scr)
-        {
+        
             for (int i = 0; i < GameObject.Find("Cube").GetComponent<Genirator>().elements.Count; i++)
             {
 
@@ -62,13 +61,13 @@ public class F : MonoBehaviour
             }
             if (tr == false)
             {
+            me.AddComponent<Rigidbody>();
                 GameObject.Find("Cube (2)").GetComponent<Delity_Must>().game.Add(me);
                 //break;
             }
             else
                 tr = false;
             StartCoroutine("DoMessage");
-        }
   
     }
 
@@ -84,8 +83,9 @@ public class F : MonoBehaviour
         for (int b = 0; b < 2; b++)
         {
             if (tram == true) break;
-                Message();
             yield return new WaitForSeconds(1f);
+            if (GameObject.Find("Cube").GetComponent<Genirator>().scr == false) continue;
+            Message();
             for (int i = 0; i < GameObject.Find("Cube").GetComponent<Genirator>().elements.Count; i++)
             {
                 float lol = (float)(((float)((int)(transform.position.x * 10))) / 10);
